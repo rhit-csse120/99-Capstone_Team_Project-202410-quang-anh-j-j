@@ -8,8 +8,11 @@ The  Game (model)  file for the Model-View-Controller architecture for our game.
    independently of events / user-input.
 
 Team members:
+Anh Ngo
+J.J. Moe
+Quang Dao
 """
-# TODO: Put the names of your entire team in the above doc-string.
+# DONE: Put the names of your entire team in the above doc-string.
 
 import pygame
 # TODO: Put each class in its own module, using the same name for both.

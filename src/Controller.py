@@ -5,8 +5,11 @@ At each call, it gets and handles whatever event(s) occurred,
 typically by asking the various objects of the Game to do things.
 
 Team members:
+Anh Ngo
+J.J. Moe
+Quang Dao
 """
-# TODO: Put the names of your entire team in the above doc-string.
+# DONE: Put the names of your entire team in the above doc-string.
 
 import pygame
 import sys
