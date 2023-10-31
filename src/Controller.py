@@ -31,9 +31,17 @@ class Controller:
 
         pressed_keys = pygame.key.get_pressed()
 
-        # TODO: Use code like the following, but for YOUR Game objects.
+        # DONE: Use code like the following, but for YOUR Game objects.
         #     if pressed_keys[pygame.K_LEFT]:
         #         self.game.fighter.move_left()
+        if pressed_keys[pygame.K_LEFT]:
+            self.game.tank.move_left()
+        if pressed_keys[pygame.K_RIGHT]:
+            self.game.tank.move_right()
+        if pressed_keys[pygame.K_UP]:
+            self.game.tank.move_up()
+        if pressed_keys[pygame.K_DOWN]:
+            self.game.tank.move_down()
 
     def exit_if_time_to_quit(self):
         for event in self.events:
