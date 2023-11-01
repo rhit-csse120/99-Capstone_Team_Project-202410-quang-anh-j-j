@@ -14,7 +14,7 @@ class Obstacles:
         self.x = 300
         self.y = 100
         self.obstacles = []
-
+        # construct obstacle
         for k in range(2):
             for k in range(2):
                 self.a = random.randint(0, 2)
@@ -32,6 +32,9 @@ class Obstacles:
                 self.y += 90
             self.x += 500
             self.y = 450
+        # construct the field
+        self.image1 = pygame.image.load("../media/obstacle 1.png")
+        self.image2 = pygame.image.load("../media/obstacle 2.png")
 
     def draw(self):
         for obstacle in self.obstacles:
