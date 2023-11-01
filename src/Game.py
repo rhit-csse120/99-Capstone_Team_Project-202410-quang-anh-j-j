@@ -27,13 +27,15 @@ class Game:
         # TODO: Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
-        self.tank = Tank(self.screen)
+        self.tank_1 = Tank(self.screen, 100, 300)
+        self.tank_2 = Tank(self.screen, 900, 300)
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
         # TODO: Use something like the following, but for objects in YOUR game:
         #     self.fighter.draw()
-        self.tank.draw()
+        self.tank_1.draw()
+        self.tank_2.draw()
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
