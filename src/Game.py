@@ -15,9 +15,10 @@ Quang Dao
 # DONE: Put the names of your entire team in the above doc-string.
 
 import pygame
-# TODO: Put each class in its own module, using the same name for both.
+# DONE: Put each class in its own module, using the same name for both.
 #  Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
+from Tank import Tank
 
 
 class Game:
@@ -26,11 +27,13 @@ class Game:
         # TODO: Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
+        self.tank = Tank(self.screen)
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
         # TODO: Use something like the following, but for objects in YOUR game:
         #     self.fighter.draw()
+        self.tank.draw()
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
