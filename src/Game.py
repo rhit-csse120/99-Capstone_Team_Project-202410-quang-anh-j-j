@@ -19,7 +19,7 @@ import pygame
 #  Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
 from Tank import Tank
-from Obstacles import Obstacles
+from Obstacle import Obstacle
 
 
 
@@ -31,7 +31,8 @@ class Game:
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.tank_1 = Tank(self.screen, 100, 300)
         self.tank_2 = Tank(self.screen, 900, 300)
-        self.obstacles = Obstacles(self.screen)
+        self.obstacle = Obstacle(self.screen,)
+
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
@@ -39,7 +40,7 @@ class Game:
         #     self.fighter.draw()
         self.tank_1.draw()
         self.tank_2.draw()
-        self.obstacles.draw()
+        self.obstacle.draw()
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
