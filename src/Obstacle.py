@@ -2,14 +2,12 @@ import pygame
 
 
 class Obstacle:
-    def __init__(self, screen, image):
+    def __init__(self, screen):
         self.x = 200
         self.y = 250
-        self.width = 10
-        self.height = 20
         self.image = pygame.image.load("../media/pumpkin_1.png")
+        self.image_scale = pygame.transform.scale(self.image, (100, 100))
         self.screen = screen
 
     def draw(self):
-        self.screen.blit(self.image, (self.x, self.y))
-
+        self.screen.blit(self.image_scale, (self.x, self.y))
