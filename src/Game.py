@@ -31,7 +31,7 @@ class Game:
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.tank_1 = Tank(self.screen, 100, 300)
         self.tank_2 = Tank(self.screen, 900, 300)
-        self.obstacle = Obstacle(self.screen,)
+        self.obstacle = Obstacle(self.screen)
 
 
     def draw_game(self):
@@ -47,3 +47,38 @@ class Game:
         # TODO: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
+        self.tank_1.get_hit_box()
+        if self.tank_1.crashed_into_obstacle_from_left(self.obstacle):
+            self.tank_1.can_go_right = False
+        else:
+            self.tank_1.can_go_right = True
+        if self.tank_1.crashed_into_obstacle_from_right(self.obstacle):
+            self.tank_1.can_go_left = False
+        else:
+            self.tank_1.can_go_left = True
+        if self.tank_1.crashed_into_obstacle_from_top(self.obstacle):
+            self.tank_1.can_go_down = False
+        else:
+            self.tank_1.can_go_down = True
+        if self.tank_1.crashed_into_obstacle_from_bottom(self.obstacle):
+            self.tank_1.can_go_up = False
+        else:
+            self.tank_1.can_go_up = True
+
+        self.tank_2.get_hit_box()
+        if self.tank_2.crashed_into_obstacle_from_left(self.obstacle):
+            self.tank_2.can_go_right = False
+        else:
+            self.tank_2.can_go_right = True
+        if self.tank_2.crashed_into_obstacle_from_right(self.obstacle):
+            self.tank_2.can_go_left = False
+        else:
+            self.tank_2.can_go_left = True
+        if self.tank_2.crashed_into_obstacle_from_top(self.obstacle):
+            self.tank_2.can_go_down = False
+        else:
+            self.tank_2.can_go_down = True
+        if self.tank_2.crashed_into_obstacle_from_bottom(self.obstacle):
+            self.tank_2.can_go_up = False
+        else:
+            self.tank_2.can_go_up = True
