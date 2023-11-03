@@ -54,7 +54,7 @@ class Obstacles:
             for i in range(17):
                 self.b = random.randrange(0, 4)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 80, 73,
-                                           self.list[self.b]))
+                                               self.list[self.b]))
                 self.x += 80
             self.x = 73
             self.y = 730
