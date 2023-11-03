@@ -22,6 +22,7 @@ from Obstacles import Obstacles
 #     from Fighter import Fighter
 from Tank import Tank
 from Obstacle import Obstacle
+from Bullets import Bullets
 
 class Game:
     def __init__(self, screen: pygame.Surface):
@@ -29,8 +30,9 @@ class Game:
         # TODO: Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
-        self.tank_1 = Tank(self.screen, 100, 300)
-        self.tank_2 = Tank(self.screen, 900, 300)
+        self.bullets = Bullets(self.screen)
+        self.tank_1 = Tank(self.screen, 100, 300, 90, self.bullets)
+        self.tank_2 = Tank(self.screen, 900, 300, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
 
     def draw_game(self):
@@ -40,12 +42,15 @@ class Game:
         self.tank_1.draw()
         self.tank_2.draw()
         self.obstacles.draw()
+        self.bullets.draw()
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
         # TODO: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
+
+        self.bullets.move()
 
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
