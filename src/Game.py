@@ -55,7 +55,7 @@ class Game:
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
             self.tank_2.get_hit_box()
-            print(obstacle)
+
             if self.tank_1.crashed_into_obstacle_from_left(obstacle):
                 self.tank_1.can_go_right = False
             else:

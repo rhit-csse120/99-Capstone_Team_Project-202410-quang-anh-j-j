@@ -42,11 +42,10 @@ class Obstacles:
         self.list = [self.image1, self.image2, self.image3, self.image4]
         self.x = 0
         self.y = 0
-        self.field = []
         for k in range(2):
             for i in range(11):
                 self.b = random.randrange(0, 3)
-                self.field.append(Obstacle(screen, self.x, self.y, 73, 73, self.list[self.b]))
+                self.obstacles.append(Obstacle(screen, self.x, self.y, 73, 73, self.list[self.b]))
                 self.y += 73
             self.x += 1430
             self.y = 0
@@ -54,7 +53,7 @@ class Obstacles:
         for k in range(2):
             for i in range(17):
                 self.b = random.randrange(0, 4)
-                self.field.append(Obstacle(screen, self.x, self.y, 80, 73,
+                self.obstacles.append(Obstacle(screen, self.x, self.y, 80, 73,
                                            self.list[self.b]))
                 self.x += 80
             self.x = 73
@@ -63,5 +62,5 @@ class Obstacles:
     def draw(self):
         for obstacle in self.obstacles:
             obstacle.draw()
-        for obstacle_1 in self.field:
+        for obstacle_1 in self.obstacles:
             obstacle_1.draw()
