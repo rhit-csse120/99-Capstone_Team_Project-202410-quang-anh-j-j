@@ -54,7 +54,7 @@ class Controller:
 
         if self.key_was_pressed_on_this_cycle(pygame.K_SPACE):
             self.game.tank_1.shoot()
-        if self.key_was_pressed_on_this_cycle(pygame.K_RSHIFT):
+        if self.key_was_pressed_on_this_cycle(pygame.K_PAGEDOWN):
             self.game.tank_2.shoot()
 
     def exit_if_time_to_quit(self):

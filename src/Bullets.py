@@ -2,6 +2,7 @@ import pygame
 from Bullet import Bullet
 # from Tank import Tank
 from Obstacle import Obstacle
+from Obstacles import Obstacles
 
 
 class Bullets:
@@ -21,9 +22,15 @@ class Bullets:
             bullet.move()
 
     def remove_dead_bullet(self):
-        for bullet in self.list_of_bullets:
+        for k in range(len(self.list_of_bullets) - 1, -1, -1):
+            bullet = self.list_of_bullets[k]
             if bullet.has_exploded is True or bullet.hit_by_tank is True or bullet.is_hit_by_obstacles is True:
-                del bullet
+                del self.list_of_bullets[k]
 
-    # def handle_explosions(self, tank: Tank):
-    #     pass
+    def handle_explosions_obstacles(self, obstacles: Obstacles):
+        for bullet in self.list_of_bullets:
+            for obstacle in obstacles.obstacles:
+                if bullet.is_hit_by_obstacles(obstacle):
+                    bullet.explode()
+        self.remove_dead_bullet()
+
