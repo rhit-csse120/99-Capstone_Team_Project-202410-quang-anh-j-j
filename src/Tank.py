@@ -33,12 +33,12 @@ class Tank:
         self.y -= math.sin(self.angle) * self.speed
 
     def turn_left(self):
-        self.angle += 1
-        self.scaled_and_rotated_image = pygame.transform.rotate(self.scaled_and_rotated_image, 1)
+        self.angle -= 45
+        self.scaled_and_rotated_image = pygame.transform.rotate(self.scaled_and_rotated_image, 45)
 
     def turn_right(self):
-        self.angle -= 1
-        self.scaled_and_rotated_image = pygame.transform.rotate(self.scaled_and_rotated_image, -1)
+        self.angle += 45
+        self.scaled_and_rotated_image = pygame.transform.rotate(self.scaled_and_rotated_image, -45)
 
     def move_left(self):
         if self.can_go_left:
@@ -76,4 +76,4 @@ class Tank:
                 or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
 
     def shoot(self):
-        self.bullets.add_bullets(Bullet(self.screen, self.x - 100, self.y - 50))
+        self.bullets.add_bullets(Bullet(self.screen, self.x, self.y + 50))

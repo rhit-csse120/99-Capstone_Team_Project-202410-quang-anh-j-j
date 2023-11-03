@@ -42,12 +42,16 @@ class Game:
         self.tank_1.draw()
         self.tank_2.draw()
         self.obstacles.draw()
+        self.bullets.draw()
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
         # TODO: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
+
+        self.bullets.move()
+
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
             self.tank_2.get_hit_box()
