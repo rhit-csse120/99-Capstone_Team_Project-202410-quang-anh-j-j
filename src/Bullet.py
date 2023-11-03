@@ -31,7 +31,7 @@ class Bullet:
         obstacle_rect = pygame.Rect(obstacle.x, obstacle.y,
                                     obstacle.hit_box.width, obstacle.hit_box.height)
         bullet_rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        return bullet_rect.collidepoint(obstacle_rect)
+        return bullet_rect.colliderect(obstacle_rect)
 
     # def is_hit_by_tanks(self, obstacle: Obstacle):
     #     obstacle_rect = pygame.Rect(obstacle.x, obstacle.y,
