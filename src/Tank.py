@@ -10,7 +10,7 @@ class Tank:
         self.y = y
         self.angle = angle - 90
         self.image = pygame.image.load("../media/tank.png")
-        self.scaled_image = pygame.transform.scale(self.image, (100, 100))
+        self.scaled_image = pygame.transform.scale(self.image, (75, 75))
         self.scaled_and_rotated_image = pygame.transform.rotate(self.scaled_image, angle)
         self.speed = 3
         self.has_exploded = False
