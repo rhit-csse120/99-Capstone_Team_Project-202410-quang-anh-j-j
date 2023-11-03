@@ -22,7 +22,7 @@ class Bullets:
 
     def remove_dead_bullet(self):
         for bullet in self.list_of_bullets:
-            if bullet.has_exploded is True or bullet.hit_by_tank is True or bullet.hit_by_obstacles is True:
+            if bullet.has_exploded is True or bullet.hit_by_tank is True or bullet.is_hit_by_obstacles is True:
                 del bullet
 
     # def handle_explosions(self, tank: Tank):
