@@ -1,4 +1,6 @@
 import pygame
+from Obstacle import Obstacle
+from Obstacles import Obstacles
 
 
 class Bullet:
@@ -24,6 +26,18 @@ class Bullet:
     def move(self):
         self.x = self.x - self.h_speed
         self.y = self.y + self.v_speed
+
+    def is_hit_by_obstacles(self, obstacle: Obstacle):
+        obstacle_rect = pygame.Rect(obstacle.x, obstacle.y,
+                                    obstacle.hit_box.width, obstacle.hit_box.height)
+        bullet_rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        return bullet_rect.collidepoint(obstacle_rect)
+
+    # def is_hit_by_tanks(self, obstacle: Obstacle):
+    #     obstacle_rect = pygame.Rect(obstacle.x, obstacle.y,
+    #                                 obstacle.hit_box.width, obstacle.hit_box.height)
+    #     bullet_rect = pygame.Rect(self.x, self.y, self.width, self.height)
+    #     return bullet_rect.collidepoint(obstacle_rect)
 
     def explode(self):
         self.has_exploded = True
