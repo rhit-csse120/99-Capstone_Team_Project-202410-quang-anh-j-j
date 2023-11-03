@@ -51,6 +51,7 @@ class Game:
         #     self.missiles.handle_explosions(self.enemies)
 
         self.bullets.move()
+        self.bullets.handle_explosions_obstacles(self.obstacles)
 
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
