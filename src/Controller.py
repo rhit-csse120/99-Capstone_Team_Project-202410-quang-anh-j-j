@@ -43,14 +43,14 @@ class Controller:
         if pressed_keys[pygame.K_s]:
             self.game.tank_1.move_backward()
 
-        if pressed_keys[pygame.K_LEFT]:
-            self.game.tank_2.move_left()
-        if pressed_keys[pygame.K_RIGHT]:
-            self.game.tank_2.move_right()
+        if self.key_was_pressed_on_this_cycle(pygame.K_LEFT):
+            self.game.tank_2.turn_left()
+        if self.key_was_pressed_on_this_cycle(pygame.K_RIGHT):
+            self.game.tank_2.turn_right()
         if pressed_keys[pygame.K_UP]:
-            self.game.tank_2.move_up()
+            self.game.tank_2.move_forward()
         if pressed_keys[pygame.K_DOWN]:
-            self.game.tank_2.move_down()
+            self.game.tank_2.move_backward()
 
         if self.key_was_pressed_on_this_cycle(pygame.K_SPACE):
             self.game.tank_1.shoot()
