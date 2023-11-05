@@ -42,7 +42,7 @@ class Tank:
 
     def turn_right(self):
         self.angle += 45
-        self.image = pygame.transform.rotate(self.og_image, self.angle)
+        self.image = pygame.transform.rotate(self.og_image, -self.angle)
         self.hit_box = self.image.get_rect(center=self.image.get_rect(topleft=(self.x, self.y)).center)
 
     # def move_left(self):
