@@ -42,3 +42,4 @@ class Bullet:
     def explode(self):
         self.has_exploded = True
 
+ 

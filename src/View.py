@@ -12,6 +12,7 @@ Quang Dao
 # DONE: Put the names of your entire team in the above doc-string.
 
 import pygame
+
 from Game import Game
 
 
@@ -19,9 +20,13 @@ class View:
     def __init__(self, screen: pygame.Surface, game: Game):
         self.screen = screen
         self.game = game
-        self.background_color = pygame.Color("orange")  # DONE: Choose own color
+        # self.background_color = pygame.Color("grey")  # DONE: Choose own color
+        self.image = pygame.image.load(
+            "../media/Background_1.jpg")
+        self.image_1 = pygame.transform.scale(self.image, (1430, 730))
 
     def draw_everything(self):
-        self.screen.fill(self.background_color)
+        # self.screen.fill(self.background_color)
+        self.screen.blit(self.image_1, (0, 0))
         self.game.draw_game()
         pygame.display.update()
