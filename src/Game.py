@@ -16,12 +16,11 @@ Quang Dao
 
 import pygame
 
-from Obstacles import Obstacles
 # DONE: Put each class in its own module, using the same name for both.
 #  Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
 from Tank import Tank
-from Obstacle import Obstacle
+from Obstacles import Obstacles
 from Bullets import Bullets
 
 class Game:
