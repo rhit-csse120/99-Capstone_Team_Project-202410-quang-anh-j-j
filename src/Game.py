@@ -31,8 +31,8 @@ class Game:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
-        self.tank_1 = Tank(self.screen, 100, 300, 90, self.bullets)
-        self.tank_2 = Tank(self.screen, 900, 300, -90, self.bullets)
+        self.tank_1 = Tank(self.screen, 100, (self.screen.get_height() - 75) / 2, 90, self.bullets)
+        self.tank_2 = Tank(self.screen, self.screen.get_width() - 250, (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
 
     def draw_game(self):
@@ -57,37 +57,37 @@ class Game:
             self.tank_1.get_hit_box()
             self.tank_2.get_hit_box()
 
-            if self.tank_1.crashed_into_obstacle_from_left(obstacle):
-                self.tank_1.can_go_right = False
-            else:
-                self.tank_1.can_go_right = True
-            if self.tank_1.crashed_into_obstacle_from_right(obstacle):
-                self.tank_1.can_go_left = False
-            else:
-                self.tank_1.can_go_left = True
-            if self.tank_1.crashed_into_obstacle_from_top(obstacle):
-                self.tank_1.can_go_down = False
-            else:
-                self.tank_1.can_go_down = True
-            if self.tank_1.crashed_into_obstacle_from_bottom(obstacle):
-                self.tank_1.can_go_up = False
-            else:
-                self.tank_1.can_go_up = True
-
-
-            if self.tank_2.crashed_into_obstacle_from_left(obstacle):
-                self.tank_2.can_go_right = False
-            else:
-                self.tank_2.can_go_right = True
-            if self.tank_2.crashed_into_obstacle_from_right(obstacle):
-                self.tank_2.can_go_left = False
-            else:
-                self.tank_2.can_go_left = True
-            if self.tank_2.crashed_into_obstacle_from_top(obstacle):
-                self.tank_2.can_go_down = False
-            else:
-                self.tank_2.can_go_down = True
-            if self.tank_2.crashed_into_obstacle_from_bottom(obstacle):
-                self.tank_2.can_go_up = False
-            else:
-                self.tank_2.can_go_up = True
+            # if self.tank_1.crashed_into_obstacle_from_left(obstacle):
+            #     self.tank_1.can_go_right = False
+            # else:
+            #     self.tank_1.can_go_right = True
+            # if self.tank_1.crashed_into_obstacle_from_right(obstacle):
+            #     self.tank_1.can_go_left = False
+            # else:
+            #     self.tank_1.can_go_left = True
+            # if self.tank_1.crashed_into_obstacle_from_top(obstacle):
+            #     self.tank_1.can_go_down = False
+            # else:
+            #     self.tank_1.can_go_down = True
+            # if self.tank_1.crashed_into_obstacle_from_bottom(obstacle):
+            #     self.tank_1.can_go_up = False
+            # else:
+            #     self.tank_1.can_go_up = True
+            #
+            #
+            # if self.tank_2.crashed_into_obstacle_from_left(obstacle):
+            #     self.tank_2.can_go_right = False
+            # else:
+            #     self.tank_2.can_go_right = True
+            # if self.tank_2.crashed_into_obstacle_from_right(obstacle):
+            #     self.tank_2.can_go_left = False
+            # else:
+            #     self.tank_2.can_go_left = True
+            # if self.tank_2.crashed_into_obstacle_from_top(obstacle):
+            #     self.tank_2.can_go_down = False
+            # else:
+            #     self.tank_2.can_go_down = True
+            # if self.tank_2.crashed_into_obstacle_from_bottom(obstacle):
+            #     self.tank_2.can_go_up = False
+            # else:
+            #     self.tank_2.can_go_up = True
