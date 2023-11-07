@@ -11,29 +11,52 @@ class Obstacles:
         self.image_2 = pygame.image.load("../media/pumpkin_2.png")
         self.image_3 = pygame.image.load("../media/ghost.png")
         self.list_image = [self.image_1, self.image_2, self.image_3]
-        self.x = 420
-        self.y = 180
+        self.x = random.randrange(250, 350)
+        self.y = random.randrange(190, 250)
         self.obstacles = []
         # construct obstacle
-        for k in range(2):
+        for k in range(1):
             for k in range(2):
                 self.a = random.randint(0, 2)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
                                                self.list_image[self.a]))
                 self.y += 77
-            self.x += 500
-            self.y = 180
-        self.y = 450
-        self.x = 420
 
-        for k in range(2):
-            for k in range(2):
+        self.x = random.randrange(500, 700)
+        self.c = self.x
+        self.y = random.randrange(450, 550)
+        for i in range(2):
+            for _ in range(2 - i):
                 self.a = random.randint(0, 2)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
                                                self.list_image[self.a]))
-                self.y += 77
-            self.x += 500
-            self.y = 450
+                self.x += 75
+            self.y += 75
+            self.x = self.c + 75 / 2
+
+        self.x = random.randrange(1000, 1110)
+        self.c = self.x
+        self.y = random.randrange(150, 300)
+        for k in range(2):
+            for _ in range(2):
+                self.a = random.randint(0, 2)
+                self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
+                                               self.list_image[self.a]))
+                self.x += 75
+            self.y += 75
+            self.x =self.c
+
+        self.x = random.randrange(550, 750)
+        self.c = self.x
+        self.y = random.randrange(135, 160)
+        for k in range(2):
+            for _ in range(2):
+                self.a = random.randint(0, 2)
+                self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
+                                               self.list_image[self.a]))
+                self.x += 75
+            self.y += 75
+            self.x = self.c
         # construct the field
         self.image1 = pygame.image.load("../media/obstacle 1.png")
         self.image2 = pygame.image.load("../media/obstacle 2.png")
