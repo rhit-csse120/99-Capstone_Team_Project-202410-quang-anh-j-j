@@ -32,7 +32,8 @@ class Game:
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
         self.tank_1 = Tank(self.screen, 100, (self.screen.get_height() - 75) / 2, 90, self.bullets)
-        self.tank_2 = Tank(self.screen, self.screen.get_width() - 250, (self.screen.get_height() - 75) / 2, -90, self.bullets)
+        self.tank_2 = Tank(self.screen, self.screen.get_width() - 250,
+                           (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
 
     def draw_game(self):
