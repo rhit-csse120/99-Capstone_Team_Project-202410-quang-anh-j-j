@@ -15,8 +15,8 @@ class Obstacles:
         self.y = random.randrange(190, 250)
         self.obstacles = []
         # construct obstacle
-        for k in range(1):
-            for k in range(2):
+        for _ in range(1):
+            for _ in range(2):
                 self.a = random.randint(0, 2)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
                                                self.list_image[self.a]))
@@ -37,7 +37,7 @@ class Obstacles:
         self.x = random.randrange(1000, 1110)
         self.c = self.x
         self.y = random.randrange(150, 300)
-        for k in range(2):
+        for _ in range(2):
             for _ in range(2):
                 self.a = random.randint(0, 2)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
@@ -49,7 +49,7 @@ class Obstacles:
         self.x = random.randrange(550, 750)
         self.c = self.x
         self.y = random.randrange(135, 160)
-        for k in range(2):
+        for _ in range(2):
             for _ in range(2):
                 self.a = random.randint(0, 2)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 85, 85,
@@ -65,16 +65,16 @@ class Obstacles:
         self.list = [self.image1, self.image2, self.image3, self.image4]
         self.x = 0
         self.y = 0
-        for k in range(2):
-            for i in range(11):
+        for _ in range(2):
+            for _ in range(11):
                 self.b = random.randrange(0, 3)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 73, 73, self.list[self.b]))
                 self.y += 73
             self.x += 1430
             self.y = 0
         self.x = 73
-        for k in range(2):
-            for i in range(17):
+        for _ in range(2):
+            for _ in range(17):
                 self.b = random.randrange(0, 4)
                 self.obstacles.append(Obstacle(screen, self.x, self.y, 80, 73,
                                                self.list[self.b]))
