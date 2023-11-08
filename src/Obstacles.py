@@ -44,7 +44,7 @@ class Obstacles:
                                                self.list_image[self.a]))
                 self.x += 75
             self.y += 75
-            self.x =self.c
+            self.x = self.c
 
         self.x = random.randrange(550, 750)
         self.c = self.x
@@ -85,5 +85,3 @@ class Obstacles:
     def draw(self):
         for obstacle in self.obstacles:
             obstacle.draw()
-        for obstacle_1 in self.obstacles:
-            obstacle_1.draw()
