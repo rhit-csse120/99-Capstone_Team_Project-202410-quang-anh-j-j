@@ -1,15 +1,16 @@
+import math
 import pygame
 from Obstacle import Obstacle
 from Obstacles import Obstacles
 
 
 class Bullet:
-    def __init__(self, screen: pygame.Surface, x, y):
+    def __init__(self, screen: pygame.Surface, x, y, angle):
         self.screen = screen
         self.x = x
         self.y = y
-        self.h_speed = 10
-        self.v_speed = 0
+        self.h_speed = 5 * math.cos(angle * math.pi / 180)
+        self.v_speed = 5 * math.sin(angle * math.pi / 180)
         self.height = 10
         self.width = 8
         self.hit_by_tank = False
@@ -24,8 +25,8 @@ class Bullet:
                          self.width)
 
     def move(self):
-        self.x = self.x - self.h_speed
-        self.y = self.y + self.v_speed
+        self.x += self.h_speed
+        self.y -= self.v_speed
 
     def is_hit_by_obstacles(self, obstacle: Obstacle):
         obstacle_rect = pygame.Rect(obstacle.x, obstacle.y,

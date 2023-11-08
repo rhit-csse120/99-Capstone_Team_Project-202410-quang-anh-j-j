@@ -72,5 +72,8 @@ class Tank:
 
     def shoot(self):
         self.bullets.add_bullets(Bullet(self.screen,
-                                        self.x + self.width/2 + math.cos(self.angle),
-                                        self.y + self.height/2 + math.sin(self.angle)))
+                                        self.hit_box.center[0]
+                                        + self.hit_box.width/2 * (math.cos(self.angle * math.pi / 180) + 1),
+                                        self.hit_box.center[1]
+                                        - self.hit_box.height/2 * (math.sin(self.angle * math.pi / 180) - 1),
+                                        self.angle))
