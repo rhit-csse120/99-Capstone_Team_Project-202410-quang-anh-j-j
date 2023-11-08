@@ -10,8 +10,7 @@ class Obstacle:
         self.height = height
         self.image_scale = pygame.transform.scale(self.image, (self.width, self.height))
         self.screen = screen
-        self.hit_box = pygame.Rect(self.x, self.y, 100, 100)
-
+        self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
 
     def draw(self):
         self.screen.blit(self.image_scale, (self.x, self.y))
