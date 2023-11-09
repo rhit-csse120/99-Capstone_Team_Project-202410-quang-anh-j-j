@@ -23,11 +23,10 @@ from Tank import Tank
 from Obstacles import Obstacles
 from Bullets import Bullets
 
-
 class Game:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
-        # DONE: Store whatever YOUR game needs, perhaps something like this:
+        # TODO: Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
@@ -35,27 +34,87 @@ class Game:
         self.tank_2 = Tank(self.screen, self.screen.get_width() - 250,
                            (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
+        self.background_music = pygame.mixer.Sound("../media/bouncy-ball-55955.mp3")
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
-        # DONE: Use something like the following, but for objects in YOUR game:
-        #     self.fighter.draw()
-        self.tank_1.draw()
-        self.tank_2.draw()
+        # TODO: Use something like the following, but for objects in YOUR game:
+        #     self.fighter.draw():
+        if self.tank_1.has_exploded is not True:
+            self.tank_1.draw()
+        if self.tank_2.has_exploded is not True:
+            self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+        #                                                    self.tank_1.width, self.tank_1.height), 5)
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+        #                                                    self.tank_2.width, self.tank_2.height), 5)
+        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5, self.tank_1.y + 12.5, 50, 50))
+        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_2.x + 12.5, self.tank_2.y + 12.5, 50, 50))
+
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+                                                           self.tank_1.width, self.tank_1.height), 5)
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+                                                           self.tank_2.width, self.tank_2.height), 5)
+
+        pygame.draw.circle(self.screen, "magenta", (self.tank_1.x + 12.5, self.tank_1.y), 5, 5)
+        pygame.draw.circle(self.screen, "magenta", (self.tank_2.x + 12.5, self.tank_2.y), 5, 5)
+
+
+
+
+
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
-        # DONE: Use something like the following, but for objects in YOUR game:
+        # TODO: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
+
+        self.background_music.play()
 
         self.bullets.move()
         self.bullets.handle_explosions_obstacles(self.obstacles)
 
+        self.tank_1.handle_explosions(self.tank_2, self.bullets)
+        self.tank_2.handle_explosions(self.tank_1, self.bullets)
+
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
             self.tank_2.get_hit_box()
-            # if self.tank_1.get_hit_box().colliderect(obstacle.hit_box) and:
 
+            # if self.tank_1.crashed_into_obstacle_from_left(obstacle):
+            #     self.tank_1.can_go_right = False
+            # else:
+            #     self.tank_1.can_go_right = True
+            # if self.tank_1.crashed_into_obstacle_from_right(obstacle):
+            #     self.tank_1.can_go_left = False
+            # else:
+            #     self.tank_1.can_go_left = True
+            # if self.tank_1.crashed_into_obstacle_from_top(obstacle):
+            #     self.tank_1.can_go_down = False
+            # else:
+            #     self.tank_1.can_go_down = True
+            # if self.tank_1.crashed_into_obstacle_from_bottom(obstacle):
+            #     self.tank_1.can_go_up = False
+            # else:
+            #     self.tank_1.can_go_up = True
+            #
+            #
+            # if self.tank_2.crashed_into_obstacle_from_left(obstacle):
+            #     self.tank_2.can_go_right = False
+            # else:
+            #     self.tank_2.can_go_right = True
+            # if self.tank_2.crashed_into_obstacle_from_right(obstacle):
+            #     self.tank_2.can_go_left = False
+            # else:
+            #     self.tank_2.can_go_left = True
+            # if self.tank_2.crashed_into_obstacle_from_top(obstacle):
+            #     self.tank_2.can_go_down = False
+            # else:
+            #     self.tank_2.can_go_down = True
+            # if self.tank_2.crashed_into_obstacle_from_bottom(obstacle):
+            #     self.tank_2.can_go_up = False
+            # else:
+            #     self.tank_2.can_go_up = True
