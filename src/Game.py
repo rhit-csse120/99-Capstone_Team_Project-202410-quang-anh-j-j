@@ -16,12 +16,11 @@ Quang Dao
 
 import pygame
 
-from Obstacles import Obstacles
 # DONE: Put each class in its own module, using the same name for both.
 #  Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
 from Tank import Tank
-from Obstacle import Obstacle
+from Obstacles import Obstacles
 from Bullets import Bullets
 
 class Game:
@@ -32,17 +31,40 @@ class Game:
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
         self.tank_1 = Tank(self.screen, 100, (self.screen.get_height() - 75) / 2, 90, self.bullets)
-        self.tank_2 = Tank(self.screen, self.screen.get_width() - 250, (self.screen.get_height() - 75) / 2, -90, self.bullets)
+        self.tank_2 = Tank(self.screen, self.screen.get_width() - 250,
+                           (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
+        self.background_music = pygame.mixer.Sound("../media/bouncy-ball-55955.mp3")
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
         # TODO: Use something like the following, but for objects in YOUR game:
-        #     self.fighter.draw()
-        self.tank_1.draw()
-        self.tank_2.draw()
+        #     self.fighter.draw():
+        if self.tank_1.has_exploded is not True:
+            self.tank_1.draw()
+        if self.tank_2.has_exploded is not True:
+            self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+        #                                                    self.tank_1.width, self.tank_1.height), 5)
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+        #                                                    self.tank_2.width, self.tank_2.height), 5)
+        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5, self.tank_1.y + 12.5, 50, 50))
+        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_2.x + 12.5, self.tank_2.y + 12.5, 50, 50))
+
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+                                                           self.tank_1.width, self.tank_1.height), 5)
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+                                                           self.tank_2.width, self.tank_2.height), 5)
+
+        pygame.draw.circle(self.screen, "magenta", (self.tank_1.x + 12.5, self.tank_1.y), 5, 5)
+        pygame.draw.circle(self.screen, "magenta", (self.tank_2.x + 12.5, self.tank_2.y), 5, 5)
+
+
+
+
+
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
@@ -50,8 +72,13 @@ class Game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
 
+        # self.background_music.play()
+
         self.bullets.move()
         self.bullets.handle_explosions_obstacles(self.obstacles)
+
+        self.tank_1.handle_explosions(self.tank_2, self.bullets)
+        self.tank_2.handle_explosions(self.tank_1, self.bullets)
 
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
