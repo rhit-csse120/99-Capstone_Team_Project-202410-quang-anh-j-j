@@ -31,6 +31,8 @@ class Bullets:
         for bullet in self.list_of_bullets:
             for obstacle in obstacles.obstacles:
                 if bullet.is_hit_by_obstacles(obstacle):
-                    bullet.explode()
-        self.remove_dead_bullet()
+                    bullet.v_speed = bullet.v_speed * (-1)
+                    bullet.h_speed = bullet.h_speed * (-1)
+                    # bullet.explode()
+        # self.remove_dead_bullet()
 

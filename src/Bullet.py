@@ -4,10 +4,11 @@ from Obstacle import Obstacle
 
 
 class Bullet:
-    def __init__(self, screen: pygame.Surface, x, y, angle):
+    def __init__(self, screen: pygame.Surface, x, y, angle, tank):
         self.screen = screen
         self.x = x
         self.y = y
+        self.tank = tank
         self.h_speed = 5 * math.cos(angle * math.pi / 180)
         self.v_speed = 5 * math.sin(angle * math.pi / 180)
         self.height = 4
@@ -41,5 +42,8 @@ class Bullet:
 
     def explode(self):
         self.has_exploded = True
+
+    def bounce(self, obstacle: Obstacle):
+        pass
 
  
