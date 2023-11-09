@@ -54,8 +54,19 @@ class Game:
         self.bullets.move()
         self.bullets.handle_explosions_obstacles(self.obstacles)
 
-        for obstacle in self.obstacles.obstacles:
-            self.tank_1.get_hit_box()
-            self.tank_2.get_hit_box()
-            # if self.tank_1.get_hit_box().colliderect(obstacle.hit_box) and:
-
+        # pressed_keys = pygame.key.get_pressed()
+        # for obstacle in self.obstacles.obstacles:
+        #     self.tank_1.get_hit_box()
+        #     self.tank_2.get_hit_box()
+        #     self.tank_1.can_go_forward = True
+        #     self.tank_2.can_go_forward = True
+        #     self.tank_1.can_go_forward = False
+        #     self.tank_2.can_go_forward = False
+        #     if self.tank_1.get_hit_box().colliderect(obstacle.hit_box) and pressed_keys[pygame.K_w]:
+        #         self.tank_1.can_go_forward = False
+        #     if self.tank_2.get_hit_box().colliderect(obstacle.hit_box) and pressed_keys[pygame.K_UP]:
+        #         self.tank_2.can_go_forward = False
+        #     if self.tank_1.get_hit_box().colliderect(obstacle.hit_box) and pressed_keys[pygame.K_s]:
+        #         self.tank_1.can_go_backward = False
+        #     if self.tank_2.get_hit_box().colliderect(obstacle.hit_box) and pressed_keys[pygame.K_DOWN]:
+        #         self.tank_2.can_go_backward = False

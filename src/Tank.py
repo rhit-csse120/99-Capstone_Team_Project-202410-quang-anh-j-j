@@ -18,57 +18,54 @@ class Tank:
         self.speed = 3
         self.has_exploded = False
         self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
-        # self.can_go_left = True
-        # self.can_go_right = True
-        # self.can_go_up = True
-        # self.can_go_down = True
+        self.can_go_forward = True
+        self.can_go_backward = True
         self.bullets = bullets
         self.angle_for_turning = 0
 
     def draw(self):
-        if self.angle % 45 == 0 and self.angle % 90 != 0:
-            self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
-                                                       self.y + self.height / math.sqrt(2)))
-        else:
-            self.hit_box = self.image.get_rect(center=(self.x + self.width / 2, self.y + self.height / 2))
+        # if self.angle % 45 == 0 and self.angle % 90 != 0:
+        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
+        #                                                self.y + self.height / math.sqrt(2)))
+        # else:
+        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / 2, self.y + self.height / 2))
+        self.hit_box = self.image.get_rect(center = (self.x, self.y))
         self.screen.blit(self.image, self.hit_box.center)
 
     def move_forward(self):
-        self.x += math.cos(self.angle * math.pi / 180) * self.speed
-        self.y -= math.sin(self.angle * math.pi / 180) * self.speed
+        if self.can_go_forward:
+            self.x += math.cos(self.angle * math.pi / 180) * self.speed
+            self.y -= math.sin(self.angle * math.pi / 180) * self.speed
 
     def move_backward(self):
-        self.x -= math.cos(self.angle * math.pi / 180) * self.speed
-        self.y += math.sin(self.angle * math.pi / 180) * self.speed
+        if self.can_go_backward:
+            self.x -= math.cos(self.angle * math.pi / 180) * self.speed
+            self.y += math.sin(self.angle * math.pi / 180) * self.speed
 
     def turn_left(self):
         self.angle += 45
         self.angle_for_turning += 45
         self.image = pygame.transform.rotate(self.og_image, self.angle_for_turning)
+        if self.angle_for_turning % 45 == 0 and self.angle_for_turning % 90 != 0:
+            self.x -= math.sqrt(2) / 4 * self.width
+            self.y -= math.sqrt(2) / 4 * self.height
+        else:
+            self.x += math.sqrt(2) / 4 * self.width
+            self.y += math.sqrt(2) / 4 * self.height
 
     def turn_right(self):
         self.angle -= 45
         self.angle_for_turning -= 45
         self.image = pygame.transform.rotate(self.og_image, self.angle_for_turning)
+        if self.angle_for_turning % 45 == 0 and self.angle_for_turning % 90 != 0:
+            self.x -= math.sqrt(2) / 4 * self.width
+            self.y -= math.sqrt(2) / 4 * self.height
+        else:
+            self.x += math.sqrt(2) / 4 * self.width
+            self.y += math.sqrt(2) / 4 * self.height
 
     def get_hit_box(self):
         return self.hit_box
-
-    # def crashed_into_obstacle_from_right(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x + 100, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_left(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_top(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y))
-    #
-    # def crashed_into_obstacle_from_bottom(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y + 100)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
 
     def shoot(self):
         self.bullets.add_bullets(Bullet(self.screen,
