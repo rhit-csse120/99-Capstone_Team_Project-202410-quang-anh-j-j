@@ -16,12 +16,14 @@ Quang Dao
 
 import pygame
 
+from Bullets import Bullets
+from Obstacles import Obstacles
 # DONE: Put each class in its own module, using the same name for both.
 #  Then use statements like the following, but for YOUR classes in YOUR modules:
 #     from Fighter import Fighter
 from Tank import Tank
-from Obstacles import Obstacles
-from Bullets import Bullets
+from winning_screen import Scoreboard
+
 
 class Game:
     def __init__(self, screen: pygame.Surface):
@@ -35,6 +37,7 @@ class Game:
                            (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
         self.background_music = pygame.mixer.Sound("../media/bouncy-ball-55955.mp3")
+        self.scoreboard = Scoreboard(screen)
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
@@ -48,6 +51,11 @@ class Game:
         # self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
+        if self.tank_1.has_exploded:
+            self.scoreboard.draw_2()
+        if self.tank_2.has_exploded:
+            self.scoreboard.draw_1()
+
         # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
         #                                                    self.tank_1.width, self.tank_1.height), 5)
         # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
@@ -65,11 +73,6 @@ class Game:
         # pygame.draw.circle(self.screen, "magenta", (self.tank_1.x + 12.5, self.tank_1.y), 5, 5)
         # pygame.draw.circle(self.screen, "magenta", (self.tank_2.x + 12.5, self.tank_2.y), 5, 5)
 
-
-
-
-
-
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
         # TODO: Use something like the following, but for objects in YOUR game:
@@ -83,6 +86,7 @@ class Game:
 
         self.tank_1.handle_explosions(self.tank_2, self.tank_1.bullets)
         self.tank_2.handle_explosions(self.tank_1, self.tank_2.bullets)
+
 
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()

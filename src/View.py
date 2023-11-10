@@ -24,11 +24,11 @@ class View:
         self.image = pygame.image.load(
             "../media/Background_1.jpg")
         self.image_1 = pygame.transform.scale(self.image, (1430, 730))
-        self.scoreboard = Scoreboard(self.screen)
+
 
     def draw_everything(self):
         self.screen.blit(self.image_1, (0, 0))
 
-        self.scoreboard.draw()
+
         self.game.draw_game()
         pygame.display.update()
