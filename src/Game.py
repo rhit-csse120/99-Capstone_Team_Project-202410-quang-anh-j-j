@@ -44,22 +44,26 @@ class Game:
             self.tank_1.draw()
         if self.tank_2.has_exploded is not True:
             self.tank_2.draw()
+        # self.tank_1.draw()
+        # self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
         # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
         #                                                    self.tank_1.width, self.tank_1.height), 5)
         # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
         #                                                    self.tank_2.width, self.tank_2.height), 5)
-        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5, self.tank_1.y + 12.5, 50, 50))
-        pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_2.x + 12.5, self.tank_2.y + 12.5, 50, 50))
-
-        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
-                                                           self.tank_1.width, self.tank_1.height), 5)
-        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
-                                                           self.tank_2.width, self.tank_2.height), 5)
-
-        pygame.draw.circle(self.screen, "magenta", (self.tank_1.x + 12.5, self.tank_1.y), 5, 5)
-        pygame.draw.circle(self.screen, "magenta", (self.tank_2.x + 12.5, self.tank_2.y), 5, 5)
+        self.tank_1.display_health()
+        self.tank_2.display_health()
+        # pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5, self.tank_1.y + 12.5, 50, 50))
+        # pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_2.x + 12.5, self.tank_2.y + 12.5, 50, 50))
+        #
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+        #                                                    self.tank_1.width, self.tank_1.height), 5)
+        # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+        #                                                    self.tank_2.width, self.tank_2.height), 5)
+        #
+        # pygame.draw.circle(self.screen, "magenta", (self.tank_1.x + 12.5, self.tank_1.y), 5, 5)
+        # pygame.draw.circle(self.screen, "magenta", (self.tank_2.x + 12.5, self.tank_2.y), 5, 5)
 
 
 
@@ -77,8 +81,8 @@ class Game:
         self.bullets.move()
         self.bullets.handle_explosions_obstacles(self.obstacles)
 
-        self.tank_1.handle_explosions(self.tank_2, self.bullets)
-        self.tank_2.handle_explosions(self.tank_1, self.bullets)
+        self.tank_1.handle_explosions(self.tank_2, self.tank_1.bullets)
+        self.tank_2.handle_explosions(self.tank_1, self.tank_2.bullets)
 
         for obstacle in self.obstacles.obstacles:
             self.tank_1.get_hit_box()
