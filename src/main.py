@@ -16,11 +16,12 @@ Quang Dao
 # DONE: Put the names of your entire team in the above doc-string.
 
 import pygame
-from Game import Game
+
 from Controller import Controller
+from Game import Game
 from View import View
 
-
+again = True
 def main():
     pygame.init()
     pygame.display.set_caption("Tanks")  # DONE: Put your own game name
@@ -29,7 +30,8 @@ def main():
     game = Game(screen)  # the Model
     view = View(screen, game)  # the View
     controller = Controller(game)  # the Controller
-
+    pygame.mixer.music.load("../media/bouncy-ball-55955.mp3")
+    pygame.mixer.music.play()
     frame_rate = 60  # DONE: Choose your own frame rate
 
     while True:

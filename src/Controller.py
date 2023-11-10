@@ -11,14 +11,17 @@ Quang Dao
 """
 # DONE: Put the names of your entire team in the above doc-string.
 
-import pygame
 import sys
+
+import pygame
+
 from Game import Game
 
 
 class Controller:
     def __init__(self, game: Game):
         self.game = game
+
         self.events = None  # For each cycle of the game loop, its events
 
     def get_and_handle_events(self):
@@ -28,7 +31,7 @@ class Controller:
         """
         self.events = pygame.event.get()
         self.exit_if_time_to_quit()
-
+        self.play_game_again = False
         pressed_keys = pygame.key.get_pressed()
 
         # DONE: Use code like the following, but for YOUR Game objects.
@@ -57,10 +60,12 @@ class Controller:
         if self.key_was_pressed_on_this_cycle(pygame.K_PAGEDOWN):
             self.game.tank_2.shoot()
 
+
     def exit_if_time_to_quit(self):
         for event in self.events:
             if event.type == pygame.QUIT:
                 sys.exit()
+
 
     def key_was_pressed_on_this_cycle(self, key):
         """

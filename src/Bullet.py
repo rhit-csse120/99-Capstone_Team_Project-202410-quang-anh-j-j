@@ -11,8 +11,8 @@ class Bullet:
         self.tank = tank
         self.h_speed = 5 * math.cos(angle * math.pi / 180)
         self.v_speed = 5 * math.sin(angle * math.pi / 180)
-        self.height = 4
-        self.width = 4
+        self.height = 10
+        self.width = 8
         self.hit_by_tank = False
         self.hit_by_obstacles = False
         self.has_exploded = False

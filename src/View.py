@@ -14,19 +14,21 @@ Quang Dao
 import pygame
 
 from Game import Game
+from winning_screen import Scoreboard
 
 
 class View:
     def __init__(self, screen: pygame.Surface, game: Game):
         self.screen = screen
         self.game = game
-        # self.background_color = pygame.Color("grey")  # DONE: Choose own color
         self.image = pygame.image.load(
             "../media/Background_1.jpg")
         self.image_1 = pygame.transform.scale(self.image, (1430, 730))
+        self.scoreboard = Scoreboard(self.screen)
 
     def draw_everything(self):
-        # self.screen.fill(self.background_color)
         self.screen.blit(self.image_1, (0, 0))
+
+        self.scoreboard.draw()
         self.game.draw_game()
         pygame.display.update()
