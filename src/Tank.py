@@ -26,6 +26,7 @@ class Tank:
         self.bullets = bullets
         self.angle_for_turning = 0
         self.pew_shooting = pygame.mixer.Sound("../media/Pew-pew.mp3")
+        self.health = 100
 
     def draw(self):
         # if self.angle % 45 == 0 and self.angle % 90 != 0:
@@ -101,12 +102,13 @@ class Tank:
                                         self.angle, self))
         self.pew_shooting.play()
 
-    def explode(self, bullet):
-        if bullet.tank is not self:
-            self.has_exploded = True
-            pygame.mixer.music.load("../media/mixkit-alien-blast-in-the-earth-2546.wav")
-            pygame.mixer.music.play()
-        print(self, bullet)
+    # def explode(self, bullet):
+    #     if bullet.tank is not self:
+    #         self.has_exploded = True
+    #     print(self, bullet)
+
+    def explode(self):
+        self.has_exploded = True
 
     def remove_dead_tank(self):
         if self.has_exploded:
@@ -114,6 +116,9 @@ class Tank:
 
     def handle_explosions(self, tank, bullets: Bullets):
         self.bullets = bullets
+        if tank.health == 0:
+            tank.explode()
+            tank.remove_dead_tank()
         for k in range(len(self.bullets.list_of_bullets) - 1, -1, -1):
             bullet = self.bullets.list_of_bullets[k]
             bullet_rect = pygame.Rect(bullet.x, bullet.y, bullet.width, bullet.height)
@@ -121,9 +126,20 @@ class Tank:
             print(bullet_rect)
             print(tank_rect)
             print(self.x, self.y)
+
             if bullet_rect.colliderect(tank_rect):
-                print("jenfjnesf")
-                tank.explode(self.bullets.list_of_bullets[k])
                 bullet.explode()
-                tank.remove_dead_tank()
                 self.bullets.remove_dead_bullet()
+                print("jenfjnesf")
+                if tank.health >= 20:
+                    tank.health = tank.health - 20
+                    tank.display_health()
+
+    def display_health(self):
+        if self.health > 0:
+            pygame.draw.rect(self.screen, "black", pygame.Rect(self.x, self.y - 25, 75, 20), 3)
+            pygame.draw.rect(self.screen, "green",
+                             pygame.Rect(self.x + 3, self.y - 25 + 3, (75 - 3 * 2) * (self.health / 100), 14))
+            pygame.draw.rect(self.screen, "red",
+                             pygame.Rect(self.x + 75 - 3 - (100 - self.health) * (75 - 6) / 100, self.y - 25 + 3,
+                                         (100 - self.health) * (75 - 6) / 100, 14))

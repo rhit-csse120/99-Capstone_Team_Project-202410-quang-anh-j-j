@@ -46,5 +46,3 @@ class Bullet:
 
     def bounce(self, obstacle: Obstacle):
         pass
-
- 

@@ -35,4 +35,3 @@ class Bullets:
                     bullet.h_speed = bullet.h_speed * (-1)
                     # bullet.explode()
         # self.remove_dead_bullet()
-
