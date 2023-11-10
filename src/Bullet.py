@@ -17,6 +17,7 @@ class Bullet:
         self.hit_by_obstacles = False
         self.has_exploded = False
         self.color = "magenta"
+        self.bounces = 0
 
     def draw(self):
         pygame.draw.line(self.screen, self.color,
@@ -42,8 +43,3 @@ class Bullet:
 
     def explode(self):
         self.has_exploded = True
-
-    def bounce(self, obstacle: Obstacle):
-        pass
-
- 

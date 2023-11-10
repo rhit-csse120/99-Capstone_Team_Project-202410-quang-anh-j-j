@@ -26,6 +26,7 @@ class Tank:
         self.bullets = bullets
         self.angle_for_turning = 0
         self.pew_shooting = pygame.mixer.Sound("../media/Pew-pew.mp3")
+        self.can_shoot = True
 
     def draw(self):
         # if self.angle % 45 == 0 and self.angle % 90 != 0:
@@ -93,13 +94,14 @@ class Tank:
     #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
 
     def shoot(self):
-        self.bullets.add_bullets(Bullet(self.screen,
-                                        self.hit_box.center[0]
-                                        + self.hit_box.width / 2 * (math.cos(self.angle * math.pi / 180) + 1),
-                                        self.hit_box.center[1]
-                                        - self.hit_box.height / 2 * (math.sin(self.angle * math.pi / 180) - 1),
-                                        self.angle, self))
-        self.pew_shooting.play()
+        if self.can_shoot:
+            self.bullets.add_bullets(Bullet(self.screen,
+                                            self.hit_box.center[0]
+                                            + self.hit_box.width / 2 * (math.cos(self.angle * math.pi / 180) + 1),
+                                            self.hit_box.center[1]
+                                            - self.hit_box.height / 2 * (math.sin(self.angle * math.pi / 180) - 1),
+                                            self.angle, self))
+            self.pew_shooting.play()
 
     def explode(self, bullet):
         if bullet.tank is not self:
@@ -108,6 +110,7 @@ class Tank:
 
     def remove_dead_tank(self):
         if self.has_exploded:
+            self.can_shoot = False
             del self
 
     def handle_explosions(self, tank, bullets: Bullets):
