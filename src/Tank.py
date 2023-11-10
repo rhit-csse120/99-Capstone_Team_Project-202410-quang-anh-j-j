@@ -19,10 +19,6 @@ class Tank:
         self.speed = 3
         self.has_exploded = False
         self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
-        # self.can_go_left = True
-        # self.can_go_right = True
-        # self.can_go_up = True
-        # self.can_go_down = True
         self.bullets = bullets
         self.angle_for_turning = 0
         self.pew_shooting = pygame.mixer.Sound("../media/Pew-pew.mp3")
@@ -32,17 +28,11 @@ class Tank:
     def draw(self):
         # if self.angle % 45 == 0 and self.angle % 90 != 0:
         #     self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
-        #                                                self.y + self.height / math.sqrt(2)))
-        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
-        #                                                self.y + self.height / math.sqrt(2)))
+        #                                                self.y - self.height / math.sqrt(2)))
         # else:
-        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / 2, self.y + self.height / 2))
-        # self.screen.blit(self.image, self.hit_box.center)
+        #     self.hit_box = self.image.get_rect(center=(self.x, self.y))
 
-        if self.angle % 45 == 0 and self.angle % 90 != 0:
-            self.hit_box = self.image.get_rect(center=(self.x, self.y))
-        else:
-            self.hit_box = self.image.get_rect(center=(self.x, self.y))
+        self.hit_box = self.image.get_rect(center=(self.x, self.y))
         self.screen.blit(self.image, self.hit_box.center)
 
     def move_forward(self):
@@ -78,22 +68,6 @@ class Tank:
     def get_hit_box(self):
         return self.hit_box
 
-    # def crashed_into_obstacle_from_right(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x + 100, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_left(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_top(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y))
-    #
-    # def crashed_into_obstacle_from_bottom(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y + 100)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
-
     def shoot(self):
         if self.can_shoot:
             self.bullets.add_bullets(Bullet(self.screen,
@@ -103,11 +77,6 @@ class Tank:
                                             - self.hit_box.height / 2 * (math.sin(self.angle * math.pi / 180) - 1),
                                             self.angle, self))
             self.pew_shooting.play()
-
-    # def explode(self, bullet):
-    #     if bullet.tank is not self:
-    #         self.has_exploded = True
-    #     print(self, bullet)
 
     def explode(self):
         self.has_exploded = True
@@ -125,14 +94,14 @@ class Tank:
         for k in range(len(self.bullets.list_of_bullets) - 1, -1, -1):
             bullet = self.bullets.list_of_bullets[k]
             bullet_rect = pygame.Rect(bullet.x, bullet.y, bullet.width, bullet.height)
-            tank_rect = pygame.Rect(tank.x + 12.5, tank.y + 12.5, 50, 50)
-            print(bullet_rect)
-            print(tank_rect)
-            print(self.x, self.y)
+            if self.angle % 45 == 0 and self.angle % 90 != 0:
+                tank_rect = pygame.Rect(tank.x + 12.5 + 37.5 * (math.sqrt(2) - 1),
+                                        tank.y + 12.5 + 37.5 * (math.sqrt(2) - 1), 50, 50)
+            else:
+                tank_rect = pygame.Rect(tank.x + 12.5, tank.y + 12.5, 50, 50)
             if bullet_rect.colliderect(tank_rect):
                 bullet.explode()
                 self.bullets.remove_dead_bullet()
-                print("jenfjnesf")
                 if tank.health >= 20:
                     tank.health = tank.health - 20
                     tank.display_health()
