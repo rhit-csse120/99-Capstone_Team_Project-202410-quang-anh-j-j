@@ -12,7 +12,7 @@ class Obstacles:
         self.image_3 = pygame.image.load("../media/ghost.png")
         self.list_image = [self.image_1, self.image_2, self.image_3]
         self.x = random.randrange(250, 350)
-        self.y = random.randrange(190, 250)
+        self.y = random.randrange(190, 400)
         self.obstacles = []
         # construct obstacle
         for _ in range(1):
@@ -34,9 +34,9 @@ class Obstacles:
             self.y += 75
             self.x = self.c + 75 / 2
 
-        self.x = random.randrange(1000, 1110)
+        self.x = random.randrange(950, 1070)
         self.c = self.x
-        self.y = random.randrange(150, 300)
+        self.y = random.randrange(150, 400)
         for _ in range(2):
             for _ in range(2):
                 self.a = random.randint(0, 2)

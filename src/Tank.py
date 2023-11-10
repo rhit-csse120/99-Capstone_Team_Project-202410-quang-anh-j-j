@@ -104,6 +104,8 @@ class Tank:
     def explode(self, bullet):
         if bullet.tank is not self:
             self.has_exploded = True
+            pygame.mixer.music.load("../media/mixkit-alien-blast-in-the-earth-2546.wav")
+            pygame.mixer.music.play()
         print(self, bullet)
 
     def remove_dead_tank(self):
