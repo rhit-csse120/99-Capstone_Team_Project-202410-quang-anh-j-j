@@ -41,7 +41,6 @@ class Game:
         self.scoreboard = Scoreboard(screen)
         self.a = True
 
-
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
         # DONE: Use something like the following, but for objects in YOUR game:
@@ -53,25 +52,21 @@ class Game:
         self.obstacles.draw()
         self.bullets.draw()
 
-
-
         if self.tank_1.has_exploded and self.tank_2.has_exploded is not True:
             self.scoreboard.draw_2()
-
-
 
         if self.tank_2.has_exploded and self.tank_1.has_exploded is not True:
             self.scoreboard.draw_1()
 
-        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
-                                                           self.tank_1.width, self.tank_1.height), 5)
-        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
-                                                           self.tank_2.width, self.tank_2.height), 5)
         self.tank_1.display_health()
         self.tank_2.display_health()
         """
         Helps Visualize Hit-boxes
         -------------------------
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
+                                                           self.tank_1.width, self.tank_1.height), 5)
+        pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_2.x, self.tank_2.y,
+                                                           self.tank_2.width, self.tank_2.height), 5)
         if self.tank_1.angle % 45 == 0 and self.tank_1.angle % 90 != 0:
             pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5 + 37.5 * (math.sqrt(2) - 1),
                                                              self.tank_1.y + 12.5 + 37.5 * (math.sqrt(2) - 1), 50, 50))
@@ -93,8 +88,6 @@ class Game:
         # DONE: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
-
-        # self.background_music.play()
 
         self.bullets.move()
 

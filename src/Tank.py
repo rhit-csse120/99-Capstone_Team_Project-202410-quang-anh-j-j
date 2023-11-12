@@ -28,7 +28,7 @@ class Tank:
         self.can_go_forward = True
         self.can_go_backward = True
         self.hit_box_2 = pygame.Rect(self.x + 12.5, self.y + 12.5, 50, 50)
-        self.explode_sound = pygame.mixer.Sound("../media/mixkit-alien-blast-in-the-earth-2546.wav")
+        self.explode_sound = pygame.mixer.Sound("../media/hq-explosion-6288.mp3")
 
     def draw(self):
         self.hit_box = self.image.get_rect(center=(self.x, self.y))

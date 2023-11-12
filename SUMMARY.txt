@@ -10,7 +10,7 @@ TODO: Complete the following after you have COMPLETED your project.
 
 2. List the names of the team members for your project.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     Anh Ngo, J.J. Moe, and Quang Dao
 
 3. Explain briefly what your project does and how it works.
 
@@ -19,31 +19,45 @@ TODO: Complete the following after you have COMPLETED your project.
 4. List the names of the classes in your project,
    identifying who was the primary author(s) for each.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     1. Bullet - Anh, J.J.
+     2. Bullets - Anh
+     3. Obstacle - Quang
+     4. Obstacles - Quang
+     5. Tank - J.J., Anh
+     6. winning_screen - Quang
 
 5. List the essential features of your game, as written in your
    Project Description, identifying who was the primary author(s) for each.
    (For features that you did not implement, if any, indicate so.)
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     1. Two player-controlled tanks (on the same keyboard) - J.J.
+     2. Predetermined obstacles on the field - Quang
+     3. Shooting at a desired angle - Anh, J.J.
+     4. Winning screen - Quang
 
 6. List the additional features of your game that you implemented,
    identifying who was the primary author(s) for each.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     1. Bullets bounce up to 2 times - J.J.
+     2. Background music - Anh
+     3. Sound effects - Quang, Anh
+     4. Randomly generated field - Quang
+     5. Tank health bar - Anh
 
 7. List the external modules (libraries) that you used.
      -- That is, list all the modules in IMPORT statements in your project.
      -- But do NOT include here the modules that you listed in #3 above,
           since they are INTERNAL to your project.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     - math
 
 8. List all media items (images, music, other graphics, etc.)
    that are not your own, and their sources (e.g. URLs).
    [If you no longer know the source, indicate so.]
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+     Background_1.jpg - https://assetsio.reedpopcdn.com/strange-undertaking-the-birth-of-gamings-first-graveyard-simulator-1455115284521.jpg?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp
+     bouncy-ball-55955.mp3 - pixabay.com
+
 
 9. [Optional] Add anything here that would help us assess your
    project fairly, beyond what you already said/showed in your video.
