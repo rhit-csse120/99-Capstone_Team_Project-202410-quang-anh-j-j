@@ -37,7 +37,10 @@ class Game:
                            (self.screen.get_height() - 75) / 2, -90, self.bullets)
         self.obstacles = Obstacles(self.screen)
         self.background_music = pygame.mixer.Sound("../media/bouncy-ball-55955.mp3")
+        self.explode_music = pygame.mixer.Sound("../media/hq-explosion-6288.mp3")
         self.scoreboard = Scoreboard(screen)
+        self.a = True
+
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
@@ -51,9 +54,15 @@ class Game:
         # self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
-        if self.tank_1.has_exploded:
+
+
+
+        if self.tank_1.has_exploded and self.tank_2.has_exploded is not True:
             self.scoreboard.draw_2()
-        if self.tank_2.has_exploded:
+
+
+
+        if self.tank_2.has_exploded and self.tank_1.has_exploded is not True:
             self.scoreboard.draw_1()
 
         # pygame.draw.rect(self.screen, "black", pygame.Rect(self.tank_1.x, self.tank_1.y,
@@ -82,6 +91,7 @@ class Game:
         # self.background_music.play()
 
         self.bullets.move()
+
         self.bullets.handle_explosions_obstacles(self.obstacles)
 
         self.tank_1.handle_explosions(self.tank_2, self.tank_1.bullets)

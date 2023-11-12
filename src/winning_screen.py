@@ -13,5 +13,6 @@ class Scoreboard:
 
     def draw_1(self):
         self.screen.blit(self.caption1, (550, 350))
+
     def draw_2(self):
         self.screen.blit(self.caption2, (550, 350))

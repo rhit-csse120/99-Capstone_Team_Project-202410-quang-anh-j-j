@@ -1,5 +1,8 @@
-import pygame
 import math
+import time
+
+import pygame
+
 from Bullet import Bullet
 from Bullets import Bullets
 
@@ -28,6 +31,9 @@ class Tank:
         self.pew_shooting = pygame.mixer.Sound("../media/Pew-pew.mp3")
         self.health = 100
         self.can_shoot = True
+        self.a = True
+        self.explode_music = pygame.mixer.Sound("../media/hq-explosion-6288.mp3")
+
 
     def draw(self):
         # if self.angle % 45 == 0 and self.angle % 90 != 0:
@@ -113,15 +119,23 @@ class Tank:
         self.has_exploded = True
 
     def remove_dead_tank(self):
+
+        # self.explode_music.play(1)
         if self.has_exploded:
             self.can_shoot = False
+
             del self
+
+    def music(self):
+        while self.has_exploded == True:
+            self.explode_music.play(1)
 
     def handle_explosions(self, tank, bullets: Bullets):
         self.bullets = bullets
         if tank.health == 0:
             tank.explode()
             tank.remove_dead_tank()
+
         for k in range(len(self.bullets.list_of_bullets) - 1, -1, -1):
             bullet = self.bullets.list_of_bullets[k]
             bullet_rect = pygame.Rect(bullet.x, bullet.y, bullet.width, bullet.height)
@@ -135,6 +149,7 @@ class Tank:
                 print("jenfjnesf")
                 if tank.health >= 20:
                     tank.health = tank.health - 20
+                    self.explode_music.play()
                     tank.display_health()
 
     def display_health(self):

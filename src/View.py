@@ -26,6 +26,7 @@ class View:
         self.image_1 = pygame.transform.scale(self.image, (1430, 730))
 
 
+
     def draw_everything(self):
         self.screen.blit(self.image_1, (0, 0))
 
