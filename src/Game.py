@@ -112,7 +112,7 @@ class Game:
                 self.tank_1.can_go_forward = False
             if self.tank_1.crashed_into_obstacle(obstacle) and self.tank_1.last_direction_moved == "backward":
                 self.tank_1.can_go_backward = False
-            if self.tank_2.crashed_into_obstacle(obstacle) and self.tank_1.last_direction_moved == "forward":
+            if self.tank_2.crashed_into_obstacle(obstacle) and self.tank_2.last_direction_moved == "forward":
                 self.tank_2.can_go_forward = False
-            if self.tank_2.crashed_into_obstacle(obstacle) and self.tank_1.last_direction_moved == "backward":
+            if self.tank_2.crashed_into_obstacle(obstacle) and self.tank_2.last_direction_moved == "backward":
                 self.tank_2.can_go_backward = False

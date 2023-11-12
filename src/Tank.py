@@ -19,39 +19,30 @@ class Tank:
         self.speed = 3
         self.has_exploded = False
         self.hit_box = pygame.Rect(self.x, self.y, self.width, self.height)
-        # self.can_go_left = True
-        # self.can_go_right = True
-        # self.can_go_up = True
-        # self.can_go_down = True
         self.bullets = bullets
         self.angle_for_turning = 0
         self.pew_shooting = pygame.mixer.Sound("../media/Pew-pew.mp3")
         self.health = 100
         self.can_shoot = True
+        self.last_direction_moved = None
+        self.can_go_forward = True
+        self.can_go_backward = True
+        self.hit_box_2 = pygame.Rect(self.x + 12.5, self.y + 12.5, 50, 50)
+        self.explode_sound = pygame.mixer.Sound("../media/mixkit-alien-blast-in-the-earth-2546.wav")
 
     def draw(self):
-        # if self.angle % 45 == 0 and self.angle % 90 != 0:
-        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
-        #                                                self.y + self.height / math.sqrt(2)))
-        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / math.sqrt(2),
-        #                                                self.y + self.height / math.sqrt(2)))
-        # else:
-        #     self.hit_box = self.image.get_rect(center=(self.x + self.width / 2, self.y + self.height / 2))
-        # self.screen.blit(self.image, self.hit_box.center)
-
-        if self.angle % 45 == 0 and self.angle % 90 != 0:
-            self.hit_box = self.image.get_rect(center=(self.x, self.y))
-        else:
-            self.hit_box = self.image.get_rect(center=(self.x, self.y))
+        self.hit_box = self.image.get_rect(center=(self.x, self.y))
         self.screen.blit(self.image, self.hit_box.center)
 
     def move_forward(self):
-        self.x += math.cos(self.angle * math.pi / 180) * self.speed
-        self.y -= math.sin(self.angle * math.pi / 180) * self.speed
+        if self.can_go_forward:
+            self.x += math.cos(self.angle * math.pi / 180) * self.speed
+            self.y -= math.sin(self.angle * math.pi / 180) * self.speed
 
     def move_backward(self):
-        self.x -= math.cos(self.angle * math.pi / 180) * self.speed
-        self.y += math.sin(self.angle * math.pi / 180) * self.speed
+        if self.can_go_backward:
+            self.x -= math.cos(self.angle * math.pi / 180) * self.speed
+            self.y += math.sin(self.angle * math.pi / 180) * self.speed
 
     def turn_left(self):
         self.angle += 45
@@ -78,21 +69,8 @@ class Tank:
     def get_hit_box(self):
         return self.hit_box
 
-    # def crashed_into_obstacle_from_right(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x + 100, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_left(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x, obstacle.y + 100))
-    #
-    # def crashed_into_obstacle_from_top(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y))
-    #
-    # def crashed_into_obstacle_from_bottom(self, obstacle):
-    #     return (self.hit_box.collidepoint(obstacle.x, obstacle.y + 100)
-    #             or self.hit_box.collidepoint(obstacle.x + 100, obstacle.y + 100))
+    def crashed_into_obstacle(self, obstacle):
+        return self.hit_box_2.colliderect(obstacle.hit_box)
 
     def shoot(self):
         if self.can_shoot:
@@ -104,11 +82,6 @@ class Tank:
                                             self.angle, self))
             self.pew_shooting.play()
 
-    # def explode(self, bullet):
-    #     if bullet.tank is not self:
-    #         self.has_exploded = True
-    #     print(self, bullet)
-
     def explode(self):
         self.has_exploded = True
 
@@ -117,25 +90,26 @@ class Tank:
             self.can_shoot = False
             del self
 
-    def handle_explosions(self, tank, bullets: Bullets):
+    def handle_explosions(self, bullets: Bullets):
         self.bullets = bullets
-        if tank.health == 0:
-            tank.explode()
-            tank.remove_dead_tank()
+        if self.health == 0:
+            self.explode()
+            self.remove_dead_tank()
+        if self.angle % 45 == 0 and self.angle % 90 != 0:
+            self.hit_box_2 = pygame.Rect(self.x + 12.5 + 37.5 * (math.sqrt(2) - 1),
+                                         self.y + 12.5 + 37.5 * (math.sqrt(2) - 1), 50, 50)
+        else:
+            self.hit_box_2 = pygame.Rect(self.x + 12.5, self.y + 12.5, 50, 50)
         for k in range(len(self.bullets.list_of_bullets) - 1, -1, -1):
             bullet = self.bullets.list_of_bullets[k]
             bullet_rect = pygame.Rect(bullet.x, bullet.y, bullet.width, bullet.height)
-            tank_rect = pygame.Rect(tank.x + 12.5, tank.y + 12.5, 50, 50)
-            print(bullet_rect)
-            print(tank_rect)
-            print(self.x, self.y)
-            if bullet_rect.colliderect(tank_rect):
+            if bullet_rect.colliderect(self.hit_box_2):
                 bullet.explode()
                 self.bullets.remove_dead_bullet()
-                print("jenfjnesf")
-                if tank.health >= 20:
-                    tank.health = tank.health - 20
-                    tank.display_health()
+                if self.health >= 20:
+                    self.health = self.health - 20
+                    self.explode_sound.play()
+                    self.display_health()
 
     def display_health(self):
         if self.health > 0:
