@@ -28,7 +28,7 @@ from winning_screen import Scoreboard
 class Game:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen
-        # TODO: Store whatever YOUR game needs, perhaps something like this:
+        # DONE: Store whatever YOUR game needs, perhaps something like this:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
@@ -44,14 +44,12 @@ class Game:
 
     def draw_game(self):
         """ Ask all the objects in the game to draw themselves. """
-        # TODO: Use something like the following, but for objects in YOUR game:
+        # DONE: Use something like the following, but for objects in YOUR game:
         #     self.fighter.draw():
         if self.tank_1.has_exploded is not True:
             self.tank_1.draw()
         if self.tank_2.has_exploded is not True:
             self.tank_2.draw()
-        # self.tank_1.draw()
-        # self.tank_2.draw()
         self.obstacles.draw()
         self.bullets.draw()
 
@@ -71,6 +69,9 @@ class Game:
                                                            self.tank_2.width, self.tank_2.height), 5)
         self.tank_1.display_health()
         self.tank_2.display_health()
+        """
+        Helps Visualize Hit-boxes
+        -------------------------
         if self.tank_1.angle % 45 == 0 and self.tank_1.angle % 90 != 0:
             pygame.draw.rect(self.screen, "red", pygame.Rect(self.tank_1.x + 12.5 + 37.5 * (math.sqrt(2) - 1),
                                                              self.tank_1.y + 12.5 + 37.5 * (math.sqrt(2) - 1), 50, 50))
@@ -85,10 +86,11 @@ class Game:
 
         pygame.draw.circle(self.screen, "magenta", (self.tank_1.x, self.tank_1.y), 5, 5)
         pygame.draw.circle(self.screen, "magenta", (self.tank_2.x, self.tank_2.y), 5, 5)
+        """
 
     def run_one_cycle(self):
         """ All objects that do something at each cycle: ask them to do it. """
-        # TODO: Use something like the following, but for objects in YOUR game:
+        # DONE: Use something like the following, but for objects in YOUR game:
         #     self.missiles.move()
         #     self.missiles.handle_explosions(self.enemies)
 
@@ -114,38 +116,3 @@ class Game:
                 self.tank_2.can_go_forward = False
             if self.tank_2.crashed_into_obstacle(obstacle) and self.tank_1.last_direction_moved == "backward":
                 self.tank_2.can_go_backward = False
-        print(self.tank_1.can_go_forward, self.tank_1.can_go_backward)
-            # if self.tank_1.crashed_into_obstacle_from_left(obstacle):
-            #     self.tank_1.can_go_right = False
-            # else:
-            #     self.tank_1.can_go_right = True
-            # if self.tank_1.crashed_into_obstacle_from_right(obstacle):
-            #     self.tank_1.can_go_left = False
-            # else:
-            #     self.tank_1.can_go_left = True
-            # if self.tank_1.crashed_into_obstacle_from_top(obstacle):
-            #     self.tank_1.can_go_down = False
-            # else:
-            #     self.tank_1.can_go_down = True
-            # if self.tank_1.crashed_into_obstacle_from_bottom(obstacle):
-            #     self.tank_1.can_go_up = False
-            # else:
-            #     self.tank_1.can_go_up = True
-            #
-            #
-            # if self.tank_2.crashed_into_obstacle_from_left(obstacle):
-            #     self.tank_2.can_go_right = False
-            # else:
-            #     self.tank_2.can_go_right = True
-            # if self.tank_2.crashed_into_obstacle_from_right(obstacle):
-            #     self.tank_2.can_go_left = False
-            # else:
-            #     self.tank_2.can_go_left = True
-            # if self.tank_2.crashed_into_obstacle_from_top(obstacle):
-            #     self.tank_2.can_go_down = False
-            # else:
-            #     self.tank_2.can_go_down = True
-            # if self.tank_2.crashed_into_obstacle_from_bottom(obstacle):
-            #     self.tank_2.can_go_up = False
-            # else:
-            #     self.tank_2.can_go_up = True
