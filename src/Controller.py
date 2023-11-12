@@ -43,8 +43,10 @@ class Controller:
             self.game.tank_1.turn_right()
         if pressed_keys[pygame.K_w]:
             self.game.tank_1.move_forward()
+            self.game.tank_1.last_direction_moved = "forward"
         if pressed_keys[pygame.K_s]:
             self.game.tank_1.move_backward()
+            self.game.tank_1.last_direction_moved = "backward"
 
         if self.key_was_pressed_on_this_cycle(pygame.K_LEFT):
             self.game.tank_2.turn_left()
@@ -52,20 +54,20 @@ class Controller:
             self.game.tank_2.turn_right()
         if pressed_keys[pygame.K_UP]:
             self.game.tank_2.move_forward()
+            self.game.tank_2.last_direction_moved = "forward"
         if pressed_keys[pygame.K_DOWN]:
             self.game.tank_2.move_backward()
+            self.game.tank_2.last_direction_moved = "backward"
 
         if self.key_was_pressed_on_this_cycle(pygame.K_SPACE):
             self.game.tank_1.shoot()
         if self.key_was_pressed_on_this_cycle(pygame.K_PAGEDOWN):
             self.game.tank_2.shoot()
 
-
     def exit_if_time_to_quit(self):
         for event in self.events:
             if event.type == pygame.QUIT:
                 sys.exit()
-
 
     def key_was_pressed_on_this_cycle(self, key):
         """
