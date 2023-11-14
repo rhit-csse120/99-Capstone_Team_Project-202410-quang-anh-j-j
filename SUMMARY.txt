@@ -1,4 +1,4 @@
-TODO: Complete the following after you have COMPLETED your project.
+DONE: Complete the following after you have COMPLETED your project.
 
 1. You are required to make a video for your project, as described in detail
    per a link available in the Moodle section for Capstone Team Project.
@@ -14,7 +14,12 @@ TODO: Complete the following after you have COMPLETED your project.
 
 3. Explain briefly what your project does and how it works.
 
-     [PUT YOUR ANSWER HERE, using as many lines as you need.]
+    The game we created is based on Wii Tanks, a game released in the 2000s. It has two player-controlled tanks; the
+    blue one moves when the WASD keys are pressed, and the red one moves when the arrow keys are pressed. The goal of
+    each player is to defeat the opponent's tank by shooting bullets (by pressing different keys for each tank). The
+    bullets can bounce up to three times when they hit obstacles around the border or on the field. The tanks cannot
+    move through obstacles. When a tank is hit by a bullet, its health decreases and will be displayed on its health bar.
+    If the health bar reaches zero, the tank will explode, and the remaining player will win.
 
 4. List the names of the classes in your project,
    identifying who was the primary author(s) for each.
@@ -55,8 +60,23 @@ TODO: Complete the following after you have COMPLETED your project.
    that are not your own, and their sources (e.g. URLs).
    [If you no longer know the source, indicate so.]
 
+     Pictures:
      Background_1.jpg - https://assetsio.reedpopcdn.com/strange-undertaking-the-birth-of-gamings-first-graveyard-simulator-1455115284521.jpg?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp
+     ghost.png - Unknown
+     obstacle 1.png - Unknown
+     obstacle 2.png - Unknown
+     obstacle 3.png - Unknown
+     obstacle 4.png - Unknown
+     pumpkin_1.png - Unknown
+     pumpkin_2.png - Unknown
+     blue_tank.png - https://steemit.com/utopian-io/@granturismo89/tank-design-for-2d-tanks
+     red_tank.png - https://steemit.com/utopian-io/@granturismo89/tank-design-for-2d-tanks
+
+     Music:
      bouncy-ball-55955.mp3 - pixabay.com
+     hq-explosion-6288.mp3 - pixabay.com
+     Pew-pew.mp3 - pixabay.com
+
 
 
 9. [Optional] Add anything here that would help us assess your
