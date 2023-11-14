@@ -32,9 +32,9 @@ class Game:
         #     self.missiles = Missiles(self.screen)
         #     self.fighter = Fighter(self.screen, self.missiles)
         self.bullets = Bullets(self.screen)
-        self.tank_1 = Tank(self.screen, 100, (self.screen.get_height() - 75) / 2, 90, self.bullets)
+        self.tank_1 = Tank(self.screen, 100, (self.screen.get_height() - 75) / 2, 90, self.bullets, "blue")
         self.tank_2 = Tank(self.screen, self.screen.get_width() - 250,
-                           (self.screen.get_height() - 75) / 2, -90, self.bullets)
+                           (self.screen.get_height() - 75) / 2, -90, self.bullets, "red")
         self.obstacles = Obstacles(self.screen)
         self.background_music = pygame.mixer.Sound("../media/bouncy-ball-55955.mp3")
         self.explode_music = pygame.mixer.Sound("../media/hq-explosion-6288.mp3")

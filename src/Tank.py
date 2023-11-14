@@ -5,14 +5,17 @@ from Bullets import Bullets
 
 
 class Tank:
-    def __init__(self, screen, x, y, angle, bullets):
+    def __init__(self, screen, x, y, angle, bullets, color):
         self.screen = screen
         self.x = x
         self.y = y
         self.height = 75
         self.width = 75
         self.angle = angle - 90
-        image = pygame.image.load("../media/tank.png")
+        if color == "blue":
+            image = pygame.image.load("../media/blue_tank.png")
+        if color == "red":
+            image = pygame.image.load("../media/red_tank.png")
         self.scaled_image = pygame.transform.scale(image, (self.height, self.width))
         self.og_image = pygame.transform.rotate(self.scaled_image, angle)
         self.image = self.og_image
